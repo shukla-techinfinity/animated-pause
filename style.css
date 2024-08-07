@@ -18,7 +18,7 @@ video {
 
 .text-overlay {
     position: fixed;
-    top: 60%;
+    top: 30%;
     left: 79%;
     transform: translate(-50%, -50%);
     color: #3D3D3D; /* Dark gray color for text */
@@ -42,7 +42,7 @@ video {
 }
 
 .text-overlay h1 {
-    font-size: 6em; /* Larger font size for headings */
+    font-size: 4em; /* Larger font size for headings */
     margin-bottom: 0.5em;
     font-weight: bold;
     line-height: 1.2;

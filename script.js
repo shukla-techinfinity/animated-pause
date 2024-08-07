@@ -12,15 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const textStartTime = 5; // Time in seconds when the text should appear
         const textDuration = 2; // Duration for the text to stay visible
 
+        // Flag to ensure the animation happens only once
+        let textRevealed = false;
+
         // Show the text overlay at the specified time
         video.addEventListener('timeupdate', () => {
-            if (video.currentTime >= textStartTime && video.currentTime <= textStartTime + 0.1) {
+            if (video.currentTime >= textStartTime && video.currentTime <= textStartTime + 0.1 && !textRevealed) {
+                textRevealed = true;
                 gsap.fromTo(textOverlay, 
-                    { opacity: 0, display: 'none' }, 
+                    { opacity: 0, display: 'none', y: 50 }, 
                     { 
                         opacity: 1, 
                         display: 'block', 
+                        y: 0,
                         duration: 1, 
+                        ease: "power2.out",
                         onComplete: () => {
                             gsap.delayedCall(textDuration, () => { 
                                 gsap.to(textOverlay, { opacity: 0, duration: 1 });
@@ -34,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    // Start video playback when user scrolls
+        // Start video playback when user scrolls
         ScrollTrigger.create({
             trigger: document.body,
             start: "top top",
